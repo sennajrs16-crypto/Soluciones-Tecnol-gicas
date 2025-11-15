@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto de Venta - PYMES</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-left">
+            <img src="img/logo-dark-transparent.png" alt="Logo" class="header-logo">
+            <div class="header-title">
+                <h1>Punto de Venta</h1>
+                <p class="sub">Registrar ventas - Solo lectura de inventario</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <span id="user-area">Usuario: <strong id="user-name"></strong> <button id="logout-btn">Cerrar sesión</button></span>
+        </div>
+    </header>
+
+    <main class="container-full">
+        <div class="container-top">
+            <section class="panel sales-panel">
+                <h2>💰 Registrar Venta</h2>
+                <form id="sale-form" class="form-inline">
+                    <select id="sale-product" required></select>
+                    <input type="number" id="sale-qty" placeholder="Cantidad" min="1" step="1" value="1" required>
+                    <select id="sale-warranty" style="display:none;">
+                        <option value="">-- Garantía --</option>
+                    </select>
+                    <button type="submit">Registrar Venta</button>
+                </form>
+            </section>
+
+            <aside class="panel dashboard-panel">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card stat-card products-card">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Productos</p>
+                            <p class="stat-value" id="stat-products">0</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card stat-card sales-card">
+                        <div class="stat-icon">💵</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Ventas Hoy</p>
+                            <p class="stat-value">$<span id="stat-sales">0</span></p>
+                            <p class="stat-label" style="margin-top:8px;">Ganancia</p>
+                            <p class="stat-value" style="color:#22c55e">$<span id="stat-profit">0</span></p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card stat-card">
+                        <div class="stat-icon">🛍️</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Total Ventas</p>
+                            <p class="stat-value" id="stat-total-sales">0</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card alerts-card">
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Stock Bajo</p>
+                            <ul id="low-stock" class="low-stock-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <section class="panel-full">
+            <div class="products-section-header">
+                <h2>Inventario Disponible</h2>
+                <div class="search-box">
+                    <input type="text" id="search-product" placeholder="🔍 Buscar producto..." class="search-input">
+                </div>
+            </div>
+
+            <div id="products-list" class="products-gallery"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <small>Punto de venta - Acceso de lectura. Datos guardados en el navegador.</small>
+    </footer>
+
+    <script src="js/vendor.js"></script>
+</body>
+</html>

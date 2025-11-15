@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Ventas - Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Sistema de Ventas</h1>
+            <p>e Inventario para PYMES</p>
+        </div>
+
+        <div id="error-msg" class="error"></div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-username">Usuario:</label>
+                <select id="login-username" required>
+                    <option value="">-- Selecciona un usuario --</option>
+                    <option value="Milton Fernando Quintero Lozano">Milton Fernando Quintero Lozano</option>
+                    <option value="Maria Alejandra Quintero Santamaria">Maria Alejandra Quintero Santamaria</option>
+                    <option value="Invitado">Invitado</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="login-password">Contraseña:</label>
+                <input type="password" id="login-password" placeholder="Ingresa tu contraseña" required disabled style="background:#e5e5e5;">
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn-login">Entrar</button>
+            </div>
+        </form>
+
+        <div class="info-box">
+            <strong>ℹ Usuarios disponibles:</strong>
+            <p>Milton Fernando Quintero Lozano</p>
+            <p>Maria Alejandra Quintero Santamaria</p>
+            <p>Invitado (sin contraseña)</p>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+        <div style="position:fixed;left:12px;bottom:12px;">
+                <button id="clear-session-btn" style="background:transparent;border:1px solid #22c55e;color:#22c55e;padding:6px 10px;border-radius:6px;cursor:pointer">Borrar sesión</button>
+        </div>
+        <script>
+            document.getElementById('clear-session-btn').addEventListener('click', () => {
+                localStorage.removeItem('pyme_current_user');
+                localStorage.removeItem('pyme_inventory_v1');
+                alert('Sesión y datos temporales borrados.');
+                location.reload();
+            });
+        </script>
+</body>
+</html>

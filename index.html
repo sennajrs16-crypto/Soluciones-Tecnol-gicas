@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soluciones tecnológicas</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-left">
+            <img src="img/logo-dark-transparent.png" alt="Logo" class="header-logo">
+            <div class="header-title">
+                <h1>ventas e inventario</h1>
+                <p class="sub">PYMES — Administración de productos, ventas e inventario</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <span id="user-area">Usuario: <strong id="user-name"></strong> <button id="logout-btn">Cerrar sesión</button></span>
+        </div>
+    </header>
+
+    <main class="container-full">
+        <div class="container-top">
+            <section class="panel sales-panel">
+                <h2>📊 Registrar Venta</h2>
+                <form id="sale-form" class="form-inline">
+                    <select id="sale-product" required></select>
+                    <input type="number" id="sale-qty" placeholder="Cantidad" min="1" step="1" value="1" required>
+                    <input type="number" id="sale-discount" placeholder="Descuento ($)" min="0" step="0.01" value="0">
+                    <select id="sale-warranty" style="display:none;">
+                        <option value="">-- Garantía --</option>
+                    </select>
+                    <button type="submit">Registrar Venta</button>
+                </form>
+            </section>
+
+            <aside class="panel dashboard-panel">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card stat-card products-card">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Productos</p>
+                            <p class="stat-value" id="stat-products">0</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card stat-card inventory-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Inventario</p>
+                            <p class="stat-value">$<span id="stat-inventory">0</span></p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card stat-card sales-card">
+                        <div class="stat-icon">💵</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Ventas</p>
+                            <p class="stat-value">$<span id="stat-sales">0</span></p>
+                            <p class="stat-label" style="margin-top:8px;">Ganancia</p>
+                            <p class="stat-value" style="color:#22c55e">$<span id="stat-profit">0</span></p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card stat-card">
+                        <div class="stat-icon">💸</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Retirado</p>
+                            <p class="stat-value" style="color:#16a34a">$<span id="stat-withdrawn">0</span></p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card alerts-card">
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Stock Bajo</p>
+                            <ul id="low-stock" class="low-stock-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <section class="panel-full">
+            <div class="products-section-header">
+                <h2>Catálogo de Productos</h2>
+                <div class="search-box">
+                    <input type="text" id="search-product" placeholder="🔍 Buscar producto..." class="search-input">
+                </div>
+            </div>
+
+            <div class="admin-controls">
+                <h3>Administración</h3>
+                <form id="product-form" class="form-inline">
+                    <input type="hidden" id="product-id">
+                    <input type="text" id="product-name" placeholder="Nombre" required>
+                    <input type="text" id="product-sku" placeholder="SKU" required>
+                    <input type="number" id="product-cost" placeholder="Precio de Costo" min="0" step="0.01" required>
+                    <input type="number" id="product-price" placeholder="Precio de Venta" min="0" step="0.01" required>
+                    <input type="number" id="product-stock" placeholder="Stock" min="0" step="1" required>
+                    <input type="number" id="product-warranty" placeholder="Garantía (meses)" min="0" step="1" value="0">
+                    <input type="file" id="product-image" accept="image/*" placeholder="Seleccionar imagen">
+                    <button type="submit">Guardar</button>
+                    <button type="button" id="product-clear">Limpiar</button>
+                </form>
+                <form id="withdraw-form" class="form-inline" style="margin-top:12px;align-items:center;">
+                    <input type="number" id="withdraw-amount" placeholder="Cantidad a retirar" min="0" step="0.01" style="width:160px;" required>
+                    <input type="text" id="withdraw-reason" placeholder="Motivo (opcional)" style="flex:1;">
+                    <button type="submit">Registrar Retiro</button>
+                </form>
+                <div id="withdraw-list" style="margin-top:8px;font-size:13px;color:#333"></div>
+            </div>
+
+            <div id="products-list" class="products-gallery"></div>
+        </section>
+
+        <section class="panel-full">
+            <div class="products-section-header">
+                <h2>Historial de Ventas</h2>
+                <button id="toggle-sales-history" class="btn-toggle-history">📋 Ver Historial</button>
+            </div>
+            <div id="sales-history-container" class="sales-history-container" style="display:none;">
+                <div id="sales-history-list" class="sales-history-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <small>Datos guardados en el navegador (localStorage).</small>
+    </footer>
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
